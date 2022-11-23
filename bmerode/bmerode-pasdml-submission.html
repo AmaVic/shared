@@ -1,0 +1,670 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>B-MERODE: PASDML</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	text-indent: -1.7em;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-opaquegray { background-color: rgba(255, 255, 255, 0.0375); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="168c59c1-15a2-4259-ad33-76cce3fd11cf" class="page sans"><header><h1 class="page-title">B-MERODE: PASDML</h1></header><div class="page-body"><p id="f5dc0448-66a4-4e9c-a919-8de359193b62" class=""><em><em><em><em><em><em><em><em><em>Potential Journals for Submission</em></em></em></em></em></em></em></em></em></p><p id="ac36e36d-5ff5-472f-a9aa-f490fcfb839b" class="">
+</p><ul id="d7bddee8-c4e0-4cb8-9229-9abad227ea09" class="toggle"><li><details open=""><summary><mark class="highlight-teal">Enterprise Information Systems (EIS)</mark></summary><ul id="5b76b284-24d0-4e83-8ce2-0ea46533b34c" class="bulleted-list"><li style="list-style-type:disc">Ranking<ul id="8d2f3a86-a011-404b-9f63-cd02edaafaad" class="bulleted-list"><li style="list-style-type:circle">ABDC: <mark class="highlight-teal">A</mark></li></ul><ul id="bc34b7bb-8ba4-42fc-bd33-d1c9c9675f07" class="bulleted-list"><li style="list-style-type:circle">CORE: <mark class="highlight-red">C</mark></li></ul><ul id="9340c79c-2ede-4fdc-8e3c-998a292cd17a" class="bulleted-list"><li style="list-style-type:circle">Impact Factor: <mark class="highlight-teal">5.12(2021)</mark></li></ul><ul id="7344f207-4de5-46e7-81b9-f39d14d637ac" class="bulleted-list"><li style="list-style-type:circle">SJR: <mark class="highlight-teal">Q1</mark> (2021) for Information Systems &amp; Management part</li></ul></li></ul><ul id="ac1c97cc-e906-4b74-8525-617bd3eed206" class="bulleted-list"><li style="list-style-type:disc"><mark class="highlight-teal">Scope and Topics</mark><ul id="816e7a0b-806f-4624-9a79-d8f78a54b9a9" class="bulleted-list"><li style="list-style-type:circle">“focusing on both the technical and applications aspects of EIS technology, and the complex and cross-disciplinary problems of enterprise integration that arise in <strong>integrating extended enterprises</strong> in a contemporary global supply chain environment”</li></ul><ul id="a6a604c7-b4c4-4cc3-8922-a036e07c2718" class="bulleted-list"><li style="list-style-type:circle">[…] <strong>business process and workflow modelling</strong>, analysis, integration, monitoring, and management</li></ul><ul id="934bd883-1ef7-463d-a893-4f48cc5f4d4b" class="bulleted-list"><li style="list-style-type:circle"><strong>Inter-enterprise collaboration</strong> and virtual enterprises</li></ul><ul id="13ce5a8e-77ee-4e1f-922b-3c6a9a91d47a" class="bulleted-list"><li style="list-style-type:circle">Enterprise architecture design and modelling, cloud computing and Big Data Analytics (BDA),  <strong>Model-Driven Architecture (MDA)</strong>, component-oriented architecture, Service-Oriented Architecture (SOA), collaborative development, and co-operative engineering</li></ul></li></ul><ul id="1b840cb4-6e1c-415e-870d-14210aeafb23" class="bulleted-list"><li style="list-style-type:disc"><mark class="highlight-teal">Some Existing Papers (some can probably be added to the paper to submit)</mark><ul id="efa75476-f564-43b0-80f8-59be69a3c361" class="bulleted-list"><li style="list-style-type:circle"><a href="https://www.scopus.com/record/display.uri?eid=2-s2.0-85117358455&amp;origin=resultslist&amp;sort=plf-f&amp;src=s&amp;st1=%22blockchain*%22+OR+%22smart+contract*%22+OR+%22distributed+ledger%22+OR+%22DLT*%22&amp;st2=%22enterprise+information+systems%22&amp;sid=36eef4f321c2dcaa82d31a8c87f60a61&amp;sot=b&amp;sdt=b&amp;sl=132&amp;s=%28TITLE-ABS-KEY%28%22blockchain*%22+OR+%22smart+contract*%22+OR+%22distributed+ledger%22+OR+%22DLT*%22%29+AND+SRCTITLE%28%22enterprise+information+systems%22%29%29&amp;relpos=19&amp;citeCnt=5&amp;searchTerm=">Distributed Ledger and Decentralised Technology Adoption for Smart Digital Transition in Collaborative Enterprise</a></li></ul><ul id="808c8005-2027-412d-a55a-f9978420478b" class="bulleted-list"><li style="list-style-type:circle"><a href="https://www.tandfonline.com/doi/full/10.1080/00207543.2019.1627439">Blockchain-oriented dynamic modelling of smart contract design and execution in the supply chain</a></li></ul><ul id="69286a6c-0167-442f-b849-7bfc5629100b" class="bulleted-list"><li style="list-style-type:circle"><a href="https://www.scopus.com/record/display.uri?eid=2-s2.0-85074043539&amp;origin=resultslist&amp;sort=plf-f&amp;src=s&amp;st1=%22blockchain*%22+OR+%22smart+contract*%22+OR+%22distributed+ledger%22+OR+%22DLT*%22&amp;st2=%22enterprise+information+systems%22&amp;sid=36eef4f321c2dcaa82d31a8c87f60a61&amp;sot=b&amp;sdt=b&amp;sl=132&amp;s=%28TITLE-ABS-KEY%28%22blockchain*%22+OR+%22smart+contract*%22+OR+%22distributed+ledger%22+OR+%22DLT*%22%29+AND+SRCTITLE%28%22enterprise+information+systems%22%29%29&amp;relpos=24&amp;citeCnt=20&amp;searchTerm=">Blockchain adoption for information sharing: risk decision-making in spacecraft supply chain</a></li></ul><ul id="8e80855d-c2e8-4ffd-b659-11da8839e1c8" class="bulleted-list"><li style="list-style-type:circle"><a href="https://www.scopus.com/record/display.uri?eid=2-s2.0-85107835375&amp;origin=resultslist&amp;sort=plf-f&amp;src=s&amp;st1=%22blockchain%22&amp;st2=Enterprise+Information+Systems&amp;nlo=&amp;nlr=&amp;nls=&amp;sid=f02ee8ecf62f40c2d2054668df40271a&amp;sot=b&amp;sdt=b&amp;sl=74&amp;s=%28TITLE-ABS-KEY%28%22blockchain%22%29+AND+SRCTITLE%28Enterprise+Information+Systems%29%29&amp;relpos=8&amp;citeCnt=9&amp;searchTerm=">A novel service level agreement model using blockchain and smart contract for cloud manufacturing in industry 4.0</a></li></ul><ul id="b3533910-0136-467e-b7bc-cb9992431ef8" class="bulleted-list"><li style="list-style-type:circle"><a href="https://www.scopus.com/record/display.uri?eid=2-s2.0-85105386400&amp;origin=resultslist&amp;sort=plf-f&amp;src=s&amp;st1=%22blockchain%22&amp;st2=Enterprise+Information+Systems&amp;sid=f02ee8ecf62f40c2d2054668df40271a&amp;sot=b&amp;sdt=b&amp;sl=74&amp;s=%28TITLE-ABS-KEY%28%22blockchain%22%29+AND+SRCTITLE%28Enterprise+Information+Systems%29%29&amp;relpos=9&amp;citeCnt=3&amp;searchTerm=">A distributed dynamic authorisation method for Internet+ medical &amp; healthcare data access based on consortium blockchain</a></li></ul></li></ul><ul id="d20a4c6d-7006-463b-97bf-18baf2a9dba2" class="bulleted-list"><li style="list-style-type:disc">Submission<ul id="6e67ef1e-79ac-4fb2-a482-01b7bdf6989a" class="bulleted-list"><li style="list-style-type:circle">Double blind</li></ul><ul id="bcf6addc-feba-4901-8344-3f2fac9d372b" class="bulleted-list"><li style="list-style-type:circle"><mark class="highlight-teal">No words/pages limits</mark></li></ul></li></ul><ul id="1eb8177f-fae0-40fb-ae0f-e1f4988c5341" class="bulleted-list"><li style="list-style-type:disc">Check papers<ul id="b39b2f47-7bea-4e7f-ba42-d8a847b6917b" class="bulleted-list"><li style="list-style-type:circle"><mark class="highlight-teal">model-driven / DSLs (191)</mark></li></ul><ul id="f90254dd-ccb9-4bab-b8fc-009f143e7ac9" class="bulleted-list"><li style="list-style-type:circle"><mark class="highlight-teal">blockchain (41)</mark></li></ul></li></ul></details></li></ul><ul id="f0720d41-cd02-45ec-a07f-eec9345550c5" class="toggle"><li><details open=""><summary><mark class="highlight-teal">Information &amp; Management</mark></summary><ul id="e9a5000c-20cc-44fa-b641-5f69404f4647" class="bulleted-list"><li style="list-style-type:disc">Ranking<ul id="980d6f96-fad8-4165-833e-849f0fd13f95" class="bulleted-list"><li style="list-style-type:circle">ABDC: <mark class="highlight-teal">A*</mark></li></ul><ul id="0d4c1719-0c18-484c-8b00-48c85b80ac09" class="bulleted-list"><li style="list-style-type:circle">SJR: <mark class="highlight-teal">Q1</mark></li></ul><ul id="43e81ba6-14bf-4c5f-8230-3bfc79cab3da" class="bulleted-list"><li style="list-style-type:circle">CORE: <mark class="highlight-red">/</mark></li></ul><ul id="dcb88dc2-727c-4cea-b61b-5f67ca9ca570" class="bulleted-list"><li style="list-style-type:circle">Impact Factor: <mark class="highlight-teal">10.295</mark></li></ul></li></ul><ul id="191503b8-f977-4006-a276-11c44eb3cf0a" class="bulleted-list"><li style="list-style-type:disc">Scope: design, implementation and management of information systems; Encourage further progress in IS methodology and applications; Cover range of IS development and usage for managerial policies, strategies, activities for business, public administration and international organizations.<ul id="6d967e5a-d443-4fa9-b96c-d955709dfc0f" class="bulleted-list"><li style="list-style-type:circle">No detailed topics list —&gt; More generalist</li></ul></li></ul><ul id="45d5c2da-efeb-4fb1-b731-dae88dfbcb53" class="bulleted-list"><li style="list-style-type:disc">No page / words limit</li></ul><ul id="5f0d0850-8dd8-4e5d-a7c7-bdcc4f76b504" class="bulleted-list"><li style="list-style-type:disc">Papers check<ul id="85eba0df-f3d1-4f22-bc56-a65133576a2d" class="bulleted-list"><li style="list-style-type:circle">Model-Driven / DSls (3)</li></ul><ul id="a8685fd6-1e6a-4b14-b8e7-241fb6dc393e" class="bulleted-list"><li style="list-style-type:circle">Blockchain (13)</li></ul><ul id="297c84e9-93bb-4811-a637-dc0f18317809" class="bulleted-list"><li style="list-style-type:circle">Business Process (72) - A.o. inter-organizational workflows</li></ul></li></ul></details></li></ul><ul id="be865ccc-7871-419f-9862-cb4982071942" class="toggle"><li><details open=""><summary><mark class="highlight-orange">European Journal of Information Systems</mark></summary><ul id="a76db593-f1a5-4ad1-86b2-364fb74a51d3" class="bulleted-list"><li style="list-style-type:disc">Ranking<ul id="352f0585-2c8b-4694-b62b-70b62b6ca4a3" class="bulleted-list"><li style="list-style-type:circle">ABDC: A*</li></ul><ul id="e45b1c59-ccb5-425b-9941-7c053c1b6de9" class="bulleted-list"><li style="list-style-type:circle">SJR: Q1</li></ul><ul id="7d7b005f-0698-4565-8eae-953ba16d5625" class="bulleted-list"><li style="list-style-type:circle">CORE: /</li></ul><ul id="374a497a-c10c-46c8-bf73-6acf4cea169f" class="bulleted-list"><li style="list-style-type:circle">Impact Factor: 9.011</li></ul></li></ul><ul id="e64d54ea-8f95-4cce-87db-b90e75fb7614" class="bulleted-list"><li style="list-style-type:disc">Scope: Critical views on IT - Effects, <strong>development</strong>, implementation, strategy, management, policy<ul id="622e7152-cd72-4644-97bd-4ae4b058c884" class="bulleted-list"><li style="list-style-type:circle">No detailed topics</li></ul></li></ul><ul id="6bb20f09-7c54-404d-a0dd-e98e87df8bd4" class="bulleted-list"><li style="list-style-type:disc">Types of manuscript: literature reviews, theory development, empirical research, ethnographies and narratives, research essays (usually relate to methods, practice or philosophy),<strong> issues and opinions</strong> (generally addresses an institutional problem of disciplinary challenge / opportunity), response</li></ul><ul id="c7ee6f16-8f54-46bc-a05f-c7fb19d7b8f1" class="bulleted-list"><li style="list-style-type:disc">No word limit</li></ul><ul id="db964ae1-48a9-44bc-ba0a-56c98f07aef3" class="bulleted-list"><li style="list-style-type:disc"><mark class="highlight-orange">Check Papers</mark><ul id="49dde5bc-0904-4c20-ab6d-2a8aa13f995f" class="bulleted-list"><li style="list-style-type:circle">Very few on blockchain (3)</li></ul><ul id="6b5e3ac6-b0a5-40d2-b4e7-e22235d1e5f7" class="bulleted-list"><li style="list-style-type:circle">business process (33)</li></ul><ul id="a66f49cf-353b-4d47-b31d-8db3e655b9ab" class="bulleted-list"><li style="list-style-type:circle">model-driven approaches / DSLs (10)</li></ul></li></ul></details></li></ul><ul id="235ae176-17ec-4307-8a8f-305d1adaeaba" class="toggle"><li><details open=""><summary><mark class="highlight-orange">Information and Software Technology</mark></summary><ul id="9fc098c4-1a74-496f-9787-3893f878b957" class="bulleted-list"><li style="list-style-type:disc">Ranking<ul id="8d02ab62-552a-4ace-a184-2686291ab141" class="bulleted-list"><li style="list-style-type:circle">ABDC: A</li></ul><ul id="b0968176-36b0-4a20-9111-9c9beb6c0adb" class="bulleted-list"><li style="list-style-type:circle">CORE: A</li></ul><ul id="e131b40c-7ff9-47c0-b66d-e86e2dfd0ab7" class="bulleted-list"><li style="list-style-type:circle">SJR: Q1</li></ul></li></ul><ul id="bc85d492-4224-4860-b2a6-8cd9cdd28f84" class="bulleted-list"><li style="list-style-type:disc">Scope: research and experience contributing to the improvement of software development practices. Need to have a <strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong>clear software engineering component</strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong>. <ul id="6753da42-4a66-4d7d-b3c5-3880417863f3" class="bulleted-list"><li style="list-style-type:circle">Software management, quality and metrics,</li></ul><ul id="414b01e7-5709-4e27-b8c6-f8cdcad05474" class="bulleted-list"><li style="list-style-type:circle">Software processes,</li></ul><ul id="3d83e1d3-6292-42c5-8b01-8ae10f0759b0" class="bulleted-list"><li style="list-style-type:circle"><strong>Software</strong> architecture, <strong>modelling</strong>, <strong>specification</strong>, <strong>design</strong> and programming</li></ul><ul id="f02eee09-0a7e-452c-9ec4-39671e2af250" class="bulleted-list"><li style="list-style-type:circle">Functional and non-functional software requirements</li></ul><ul id="9332d308-998f-476a-85e0-1e0eb174911f" class="bulleted-list"><li style="list-style-type:circle">Software testing and verification &amp; validation</li></ul><ul id="683c1b7d-9fd1-45b5-9a6e-3ea19d257e27" class="bulleted-list"><li style="list-style-type:circle">Empirical studies of all aspects of engineering and managing software development</li></ul></li></ul><ul id="fcefcaf2-c16a-471d-bfbe-fb5127a78db0" class="bulleted-list"><li style="list-style-type:disc"><mark class="highlight-orange">Limit: 15 000 words (submission: 14 000 + 200 words / figure or table =⇒ 14 000 + 13 * 200 = 16 600)</mark></li></ul></details></li></ul><ul id="12a9a945-8803-4c38-9cfe-0269a74683b0" class="toggle"><li><details open=""><summary><mark class="highlight-orange">Information Systems Frontiers</mark></summary><ul id="f5833de5-0ac3-4ccf-9b99-d381bded5010" class="bulleted-list"><li style="list-style-type:disc">Ranking<ul id="a8ff04ba-7222-4099-8758-46cc9a0e5318" class="bulleted-list"><li style="list-style-type:circle">ABDC: A</li></ul><ul id="066f1264-75fa-4f81-9094-541ef5c4ae74" class="bulleted-list"><li style="list-style-type:circle">CORE: /</li></ul><ul id="03614af4-9d60-44ba-b6d0-68d258b3ab1e" class="bulleted-list"><li style="list-style-type:circle">SJR: Q1</li></ul></li></ul><ul id="859da8af-be7c-4d6e-9e5b-174312cb4362" class="bulleted-list"><li style="list-style-type:disc">Scope: <em>Information Systems Frontiers</em> will focus on research and development at the IS/IT interfaces in the academia and industry. The interfaces include the base disciplines of computer science, telecommunications, operations research, economics and cognitive sciences, for instance. Emerging areas that <em>ISF</em> will concentrate on in the next few years include, but are not limited to:<ul id="bdcf41d1-180d-439b-94d8-a26245f9e1ec" class="bulleted-list"><li style="list-style-type:circle"><strong>enterprise modeling and integration</strong></li></ul><ul id="05d4d805-1fa1-4807-9bbd-c3f05ebfcc54" class="bulleted-list"><li style="list-style-type:circle">emerging object/web technologies</li></ul><ul id="6824b77f-0f2f-4ff6-aa4d-fbee9848ce0b" class="bulleted-list"><li style="list-style-type:circle">information economics</li></ul><ul id="5bb41d80-2e36-4057-af66-3d4920714ceb" class="bulleted-list"><li style="list-style-type:circle"><strong>IT integrated manufacturing</strong></li></ul><ul id="aba575fc-5494-4f96-99d7-7740ed4f40d6" class="bulleted-list"><li style="list-style-type:circle">medical informatics</li></ul><ul id="7866dc01-4730-4502-8949-e1e6c9ac83a0" class="bulleted-list"><li style="list-style-type:circle">digital libraries</li></ul><ul id="fee18fe9-839a-4e6a-afe1-65040935cc2e" class="bulleted-list"><li style="list-style-type:circle">mobile computing and electronic commerce</li></ul></li></ul><ul id="a5defc4c-d34f-40cb-84e4-78c475d88aec" class="bulleted-list"><li style="list-style-type:disc">Content<ul id="48d5d5c3-d0bf-4fd0-96e7-a15c8e371de1" class="bulleted-list"><li style="list-style-type:circle">Theories and <strong>models of IS/IT systems and solutions</strong></li></ul><ul id="9f444887-ef0e-462f-befc-263a0a878a2e" class="bulleted-list"><li style="list-style-type:circle"><strong>Pragmatic solutions to practical IS/IT problems</strong></li></ul><ul id="a3d12b70-aca6-4548-a956-94029b94adad" class="bulleted-list"><li style="list-style-type:circle">Computational, empirical and system developmental studies</li></ul><ul id="9c924051-1557-49e8-bc66-44aa4df03449" class="bulleted-list"><li style="list-style-type:circle">Perspectives synthesizing recent developments in interface areas</li></ul><ul id="55a913d7-355a-4a32-9abe-4daa9c7e34e4" class="bulleted-list"><li style="list-style-type:circle">State-of-the-art, state-of-the-market, state-of-the-practice surveys</li></ul><ul id="49310db8-336f-43f2-96f9-fd06d1fe8c5c" class="bulleted-list"><li style="list-style-type:circle">Reviews of challenges, solutions and lessons learned in practice</li></ul><ul id="fd9004f5-f48b-4158-9026-ca0fcafdabcb" class="bulleted-list"><li style="list-style-type:circle">Management</li></ul><ul id="8ec7efed-8a27-488b-b4ee-5a108a1ad36e" class="bulleted-list"><li style="list-style-type:circle">An Editorial Advisory Group and an Editorial Board both including outstanding individuals fro academia and industry</li></ul><ul id="95a83c38-2318-4d2d-8cbf-47d65cc7f5f7" class="bulleted-list"><li style="list-style-type:circle">Eminent guest editors for the dedicated issues,</li></ul><ul id="c686f45d-aabb-46f6-a725-53310296bf15" class="bulleted-list"><li style="list-style-type:circle">Editors of websites managing and maintaining the internet services.</li></ul></li></ul></details></li></ul><ul id="f096904d-e0c8-47ec-8ca4-5e8f1ff7104e" class="toggle"><li><details open=""><summary><del><mark class="highlight-red">International Journal on Software and Systems Modeling (SoSym)</mark></del></summary><ul id="b64543b2-ecf6-4794-8259-608ff877af61" class="bulleted-list"><li style="list-style-type:disc">Scope seemed a good fit, but poor ranking</li></ul><ul id="25b69fef-12be-48d5-b492-7af976a198a1" class="bulleted-list"><li style="list-style-type:disc">Ranking<ul id="f1afdfcb-5a1a-43c7-aecc-bbc36bd4f804" class="bulleted-list"><li style="list-style-type:circle">ABDC: Not ranked</li></ul><ul id="584dedd7-5c31-4b3c-8d26-8089475885cb" class="bulleted-list"><li style="list-style-type:circle">CORE: Not ranked</li></ul><ul id="c9601beb-9acb-4db0-92a0-83edcf960978" class="bulleted-list"><li style="list-style-type:circle">SJR: Not ranked</li></ul><ul id="f97b8328-1a92-4a11-b938-6e13ba0d41c9" class="bulleted-list"><li style="list-style-type:circle">Impact Factor: 2.211 (2021)</li></ul></li></ul></details></li></ul><ul id="d073e3ec-fe5e-4311-b651-dcb391268d24" class="toggle"><li><details open=""><summary><mark class="highlight-red"><del>Data Knowledge &amp; Engineering</del></mark></summary><ul id="95d58e31-4d33-4892-87bf-808d1ceb42fa" class="bulleted-list"><li style="list-style-type:disc">Even though there seem to be some papers on related topics, the paper doesn’t directly fit with many announced topics of interest. Therefore, I would not submit there to avoid a new “out of scope” rejection.</li></ul></details></li></ul><ul id="d542bacf-855f-4e05-8d88-99742cfeda0b" class="toggle"><li><details open=""><summary><del><mark class="highlight-red">Journal of Information Systems Research</mark></del></summary><ul id="7e6cd600-d92e-4c99-afad-1b592a1c0cb3" class="bulleted-list"><li style="list-style-type:disc">Scope<ul id="6a02b345-fed0-4fd2-be8e-941c981241a3" class="bulleted-list"><li style="list-style-type:circle">Articles that are &quot;pure theory&quot;</li></ul><ul id="11c9eac2-9578-4b8e-be17-87f2c3615772" class="bulleted-list"><li style="list-style-type:circle">Articles that empirically test or illustrate theory</li></ul><ul id="ddd234a9-7abb-49d9-9c69-1265c8adb6a5" class="bulleted-list"><li style="list-style-type:circle">Articles that apply existing theory</li></ul></li></ul><ul id="0e643f82-0823-48f2-8692-719f6ea96df0" class="bulleted-list"><li style="list-style-type:disc">Criteria for evaluating the publishability of a research article include:<ul id="e31327bf-b9df-4e8d-aebf-4254af3a288a" class="bulleted-list"><li style="list-style-type:circle">Is the phenomenon of salient interest to the information systems community?</li></ul><ul id="c2a825ea-9652-4ede-a9c6-12134ef1064f" class="bulleted-list"><li style="list-style-type:circle">Are the connections to the literature and relevant theories robust?</li></ul><ul id="f3b296c7-353e-4a9f-94e3-54b30715c081" class="bulleted-list"><li style="list-style-type:circle">Is the theoretical model appropriate and compelling enough to provide justification for the propositions or hypotheses?</li></ul><ul id="2801af89-79c2-4698-8d7d-c4bfe10e9010" class="bulleted-list"><li style="list-style-type:circle">Are the empirical methods appropriate, valid, and well-executed?</li></ul><ul id="1b9d8f0b-6efb-4550-9740-3fed97ee1503" class="bulleted-list"><li style="list-style-type:circle">Are the analyses done competently?</li></ul><ul id="d07e154f-5ccd-4f10-b014-126f41440eb7" class="bulleted-list"><li style="list-style-type:circle">Are the results interesting?</li></ul><ul id="9f685520-78c1-4ff7-ac33-becfb59afb1e" class="bulleted-list"><li style="list-style-type:circle">Are the conclusions compelling?</li></ul></li></ul><ul id="19d37241-12f7-40d5-8919-efa5527f3f28" class="bulleted-list"><li style="list-style-type:disc"><mark class="highlight-orange">The paper seems focus on studies and more theoretical aspects, so I doubt it is a relevant journal for the submission</mark></li></ul><ul id="2d731ff4-56f2-43dc-a37e-a590ec3c7d94" class="bulleted-list"><li style="list-style-type:disc"><mark class="highlight-red">Limit is 32 pages in single-column, double spaced</mark></li></ul></details></li></ul><ul id="1a0ffd27-2724-461e-8fb0-f31eb462d145" class="toggle"><li><details open=""><summary><del><mark class="highlight-red">Information Systems Journal </mark></del></summary><ul id="e0e2f0fa-ab73-4426-8415-382a1bc9a9cb" class="bulleted-list"><li style="list-style-type:disc">Ranking<ul id="b14d48f7-bfa8-4117-b1c5-484adb6afc41" class="bulleted-list"><li style="list-style-type:circle">ABDC: A*</li></ul><ul id="711ff10d-21b5-4a57-a19e-f9f705fbe11e" class="bulleted-list"><li style="list-style-type:circle">SJR: Q1</li></ul><ul id="ae37cd37-8ccf-4d3a-9756-0b43f7c3ae24" class="bulleted-list"><li style="list-style-type:circle">Impact Factor: 7.921 (2021)</li></ul></li></ul><ul id="77ea0fad-8072-4ff4-a32a-30ab6ef8d2df" class="bulleted-list"><li style="list-style-type:disc"><mark class="highlight-red">Limit: 10 000 Words</mark></li></ul></details></li></ul><ul id="7bf98b93-c7d5-4bb5-9770-aa890ffc1d12" class="toggle"><li><details open=""><summary><del><mark class="highlight-red">Information Technology &amp; People</mark></del></summary><ul id="374cdbdc-c8be-4347-a741-58ad1ca6a87a" class="bulleted-list"><li style="list-style-type:disc"><mark class="highlight-red">Word Count Limit: 10 000</mark></li></ul></details></li></ul><ul id="ac571621-f6b7-4a11-a3b6-a4206e85aed5" class="toggle"><li><details open=""><summary><del><mark class="highlight-red">Information, Communication &amp; Society</mark></del></summary><ul id="3c39a35e-c493-447b-929e-93438dbb49a5" class="bulleted-list"><li style="list-style-type:disc"><mark class="highlight-red">Word Count Limit: 8000 words</mark></li></ul></details></li></ul><ul id="1feeaff0-5a3b-4d5d-bdb0-3c5677446c63" class="toggle"><li><details open=""><summary><del><mark class="highlight-red">International Journal of Cooperative Information Systems</mark></del></summary><ul id="71d6c66d-decf-447c-bf7c-28b9778001bf" class="bulleted-list"><li style="list-style-type:disc">Ranking<ul id="753296f1-b7a4-4bd5-b989-d45709585bfa" class="bulleted-list"><li style="list-style-type:circle">ABDC: A</li></ul><ul id="a5cd070d-8a44-4888-a374-1afec6137954" class="bulleted-list"><li style="list-style-type:circle">SJR: <mark class="highlight-red">Q4</mark></li></ul><ul id="cca0dfd5-039c-4c2d-a77c-3544b80e2a20" class="bulleted-list"><li style="list-style-type:circle">CORE: <mark class="highlight-red">C</mark></li></ul><ul id="46a78156-ea5b-41fd-bf0f-1a1c8d3b92af" class="bulleted-list"><li style="list-style-type:circle">Impact Factor: <mark class="highlight-red">0.879</mark></li></ul></li></ul></details></li></ul></div></article></body></html>
